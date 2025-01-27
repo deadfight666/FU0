@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form action="/register" method="post">
-        <label for="firstName">First name:</label>
-        <input type="text" id="firstName" name="firstName" placeholder="First name..." required>
-        
-        <label for="lastName">Last name:</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Last name..." required>
-        
-        <button type="submit">Next</button>
-    </form>
+    <div class="form-container">
+        <form action="/register" method="post">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="firstName">First name:</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First name..." required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name:</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last name..." required>
+            </div>
+            <button type="submit">Next</button>
+        </form>
+    </div>
 </body>
 </html>
