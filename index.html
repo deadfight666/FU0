@@ -3,70 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestellformular</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bestellprozess - vdv.NRW</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-container">
+    <div class="container">
+        <h1>Bestellprozess für Dokumente</h1>
         <form id="orderForm">
-            <!-- Login-Schritt (wie im Bild) -->
-            <div id="step0" class="form-step active">
-                <h2>Login</h2>
-                <div class="form-group">
-                    <label for="firstName">First name:</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="First name..." required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last name:</label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Last name..." required>
-                </div>
-                <button type="button" onclick="nextStep()">Next</button>
-            </div>
-
-            <!-- Dokumentauswahl -->
             <div id="step1" class="form-step">
-                <h2>Schritt 1: Dokumente auswählen</h2>
-                <label><input type="checkbox" name="document" value="Broschüre"> Broschüre</label>
-                <label><input type="checkbox" name="document" value="Antragsformular"> Antragsformular</label>
-                <label><input type="checkbox" name="document" value="Hinweise"> Hinweise</label>
-                <label><input type="checkbox" name="document" value="Merkblatt"> Merkblatt</label>
-                <button type="button" onclick="prevStep()">Zurück</button>
-                <button type="button" onclick="nextStep()">Weiter</button>
+                <h2>Schritt 1: Persönliche Informationen</h2>
+                <label for="firstName">Vorname:</label>
+                <input type="text" id="firstName" name="firstName" required>
+                
+                <label for="lastName">Nachname:</label>
+                <input type="text" id="lastName" name="lastName" required>
+                
+                <button type="button" onclick="nextStep(2)">Weiter</button>
             </div>
-
-            <!-- Bereitstellungsart -->
-            <div id="step2" class="form-step">
-                <h2>Schritt 2: Bereitstellungsart wählen</h2>
-                <label><input type="radio" name="delivery" value="Download" checked> Download</label>
-                <label><input type="radio" name="delivery" value="Post"> Postversand</label>
-                <button type="button" onclick="prevStep()">Zurück</button>
-                <button type="button" onclick="nextStep()">Weiter</button>
+            
+            <div id="step2" class="form-step" style="display:none;">
+                <h2>Schritt 2: Dokumentenauswahl</h2>
+                <label for="documentType">Dokumententyp:</label>
+                <select id="documentType" name="documentType" required>
+                    <option value="fahrzeug">Fahrzeug</option>
+                    <option value="geschäft">Geschäft</option>
+                </select>
+                
+                <button type="button" onclick="prevStep(1)">Zurück</button>
+                <button type="button" onclick="nextStep(3)">Weiter</button>
             </div>
-
-            <!-- Adresseingabe -->
-            <div id="step3" class="form-step">
-                <h2>Schritt 3: Adresse eingeben</h2>
+            
+            <div id="step3" class="form-step" style="display:none;">
+                <h2>Schritt 3: Versandart</h2>
+                <label for="deliveryMethod">Versandart:</label>
+                <select id="deliveryMethod" name="deliveryMethod" required>
+                    <option value="download">Download</option>
+                    <option value="post">Postversand</option>
+                </select>
+                
                 <div id="addressFields" style="display:none;">
-                    <label>Name: <input type="text" name="name"></label>
-                    <label>Adresse: <input type="text" name="address"></label>
+                    <label for="address">Adresse:</label>
+                    <input type="text" id="address" name="address">
                 </div>
-                <button type="button" onclick="prevStep()">Zurück</button>
-                <button type="button" onclick="nextStep()">Weiter</button>
+                
+                <button type="button" onclick="prevStep(2)">Zurück</button>
+                <button type="button" onclick="nextStep(4)">Weiter</button>
             </div>
-
-            <!-- Zusammenfassung -->
-            <div id="step4" class="form-step">
-                <h2>Schritt 4: Zusammenfassung</h2>
-                <p id="summary"></p>
-                <p>Ihre Daten werden nur zur Bearbeitung Ihrer Bestellung verwendet und nicht an Dritte weitergegeben. Die Daten werden nach 30 Tagen automatisch gelöscht.</p>
-                <label>
-                    <input type="checkbox" id="privacyConsent" required>
-                    Ich stimme der <a href="#" target="_blank">Datenschutzerklärung</a> zu.
-                </label>
-                <button type="button" onclick="prevStep()">Zurück</button>
+            
+            <div id="step4" class="form-step" style="display:none;">
+                <h2>Schritt 4: Bestätigung</h2>
+                <p>Bitte überprüfen Sie Ihre Angaben:</p>
+                <div id="summary"></div>
+                
+                <button type="button" onclick="prevStep(3)">Zurück</button>
                 <button type="submit">Bestellung abschließen</button>
             </div>
         </form>
+        <a href="datenschutz.html">Datenschutzerklärung</a>
     </div>
     <script src="script.js"></script>
 </body>

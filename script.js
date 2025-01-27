@@ -1,51 +1,57 @@
-let currentStep = 0;
+let currentStep = 1;
 
-function nextStep() {
-    document.getElementById(`step${currentStep}`).classList.remove('active');
-    currentStep++;
-    document.getElementById(`step${currentStep}`).classList.add('active');
-
+function nextStep(step) {
+    document.getElementById(`step${currentStep}`).style.display = 'none';
+    currentStep = step;
+    document.getElementById(`step${currentStep}`).style.display = 'block';
+    
     if (currentStep === 3) {
-        const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-        if (deliveryMethod === 'Post') {
+        const deliveryMethod = document.getElementById('deliveryMethod').value;
+        if (deliveryMethod === 'post') {
             document.getElementById('addressFields').style.display = 'block';
         } else {
             document.getElementById('addressFields').style.display = 'none';
         }
     }
-
+    
     if (currentStep === 4) {
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
-        const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(el => el.value);
-        const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-        const name = document.querySelector('input[name="name"]').value;
-        const address = document.querySelector('input[name="address"]').value;
-
-        let summaryText = `Name: ${firstName} ${lastName}<br>`;
-        summaryText += `Ausgewählte Dokumente: ${selectedDocuments.join(', ')}<br>`;
-        summaryText += `Bereitstellungsart: ${deliveryMethod}<br>`;
-        if (deliveryMethod === 'Post') {
-            summaryText += `Lieferadresse: ${name}, ${address}`;
+        const documentType = document.getElementById('documentType').value;
+        const deliveryMethod = document.getElementById('deliveryMethod').value;
+        const address = document.getElementById('address').value;
+        
+        let summary = `
+            <p><strong>Vorname:</strong> ${firstName}</p>
+            <p><strong>Nachname:</strong> ${lastName}</p>
+            <p><strong>Dokumententyp:</strong> ${documentType}</p>
+            <p><strong>Versandart:</strong> ${deliveryMethod}</p>
+        `;
+        
+        if (deliveryMethod === 'post') {
+            summary += `<p><strong>Adresse:</strong> ${address}</p>`;
         }
-
-        document.getElementById('summary').innerHTML = summaryText;
+        
+        document.getElementById('summary').innerHTML = summary;
     }
 }
 
-function prevStep() {
-    document.getElementById(`step${currentStep}`).classList.remove('active');
-    currentStep--;
-    document.getElementById(`step${currentStep}`).classList.add('active');
+function prevStep(step) {
+    document.getElementById(`step${currentStep}`).style.display = 'none';
+    currentStep = step;
+    document.getElementById(`step${currentStep}`).style.display = 'block';
 }
+
+document.getElementById('deliveryMethod').addEventListener('change', function() {
+    if (this.value === 'post') {
+        document.getElementById('addressFields').style.display = 'block';
+    } else {
+        document.getElementById('addressFields').style.display = 'none';
+    }
+});
 
 document.getElementById('orderForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    if (!document.getElementById('privacyConsent').checked) {
-        alert('Bitte stimmen Sie der Datenschutzerklärung zu.');
-        return;
-    }
-
     alert('Bestellung erfolgreich abgeschlossen!');
-    // Hier könnte die Bestellung an den Server gesendet werden
+    // Hier könnten Sie die Daten an einen Server senden
 });
