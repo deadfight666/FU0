@@ -15,7 +15,7 @@ let currentStep = 1;
 function nextStep() {
     // Überprüfung, ob der Benutzer im ersten Schritt mindestens ein Dokument ausgewählt hat
     if (currentStep === 1) {
-        const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(el => el.value);
+        const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked'));
         if (selectedDocuments.length === 0) {
             alert('Bitte wählen Sie mindestens ein Dokument aus.');
             return; // Beendet die Funktion, wenn kein Dokument ausgewählt ist
