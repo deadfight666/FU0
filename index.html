@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestellformular</title>
+    <title>Login und Bestellformular</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container">
+    <div id="loginContainer" class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label>Vorname: <input type="text" id="firstName" required></label>
+            <label>Nachname: <input type="text" id="lastName" required></label>
+            <button type="submit">Weiter</button>
+        </form>
+    </div>
+
+    <div id="orderContainer" class="form-container" style="display:none;">
         <form id="orderForm">
             <div id="step1" class="form-step active">
                 <h2>Schritt 1: Dokumente auswählen</h2>

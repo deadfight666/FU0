@@ -1,3 +1,15 @@
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+
+    // Hier könnte eine Überprüfung der Login-Daten erfolgen
+    // Für dieses Beispiel zeigen wir einfach das Bestellformular an
+
+    document.getElementById('loginContainer').style.display = 'none';
+    document.getElementById('orderContainer').style.display = 'block';
+});
+
 let currentStep = 1;
 
 function nextStep() {
