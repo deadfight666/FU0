@@ -9,7 +9,17 @@
 <body>
     <div class="form-container">
         <form id="orderForm">
-            <div id="step1" class="form-step active">
+            <!-- Login-Schritt -->
+            <div id="step0" class="form-step active">
+                <h2>Login</h2>
+                <label>Mitgliedsnummer: <input type="text" id="memberId"></label>
+                <label>Passwort: <input type="password" id="password"></label>
+                <button type="button" onclick="checkLogin()">Login</button>
+                <p>Kein Mitglied? <a href="#" onclick="skipLogin()">Weiter ohne Login</a></p>
+            </div>
+
+            <!-- Dokumentauswahl -->
+            <div id="step1" class="form-step">
                 <h2>Schritt 1: Dokumente auswählen</h2>
                 <label><input type="checkbox" name="document" value="Broschüre"> Broschüre</label>
                 <label><input type="checkbox" name="document" value="Antragsformular"> Antragsformular</label>
@@ -17,6 +27,8 @@
                 <label><input type="checkbox" name="document" value="Merkblatt"> Merkblatt</label>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Bereitstellungsart -->
             <div id="step2" class="form-step">
                 <h2>Schritt 2: Bereitstellungsart wählen</h2>
                 <label><input type="radio" name="delivery" value="Download" checked> Download</label>
@@ -24,6 +36,8 @@
                 <button type="button" onclick="prevStep()">Zurück</button>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Adresseingabe -->
             <div id="step3" class="form-step">
                 <h2>Schritt 3: Adresse eingeben</h2>
                 <div id="addressFields" style="display:none;">
@@ -33,6 +47,8 @@
                 <button type="button" onclick="prevStep()">Zurück</button>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Zusammenfassung -->
             <div id="step4" class="form-step">
                 <h2>Schritt 4: Zusammenfassung</h2>
                 <p id="summary"></p>

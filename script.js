@@ -1,4 +1,24 @@
-let currentStep = 1;
+let currentStep = 0;
+let isMember = false;
+
+function checkLogin() {
+    const memberId = document.getElementById('memberId').value;
+    const password = document.getElementById('password').value;
+
+    // Simulierte Überprüfung der Anmeldedaten
+    if (memberId === "12345" && password === "passwort") {
+        isMember = true;
+        alert("Login erfolgreich!");
+        nextStep();
+    } else {
+        alert("Falsche Mitgliedsnummer oder Passwort.");
+    }
+}
+
+function skipLogin() {
+    isMember = false;
+    nextStep();
+}
 
 function nextStep() {
     document.getElementById(`step${currentStep}`).classList.remove('active');
