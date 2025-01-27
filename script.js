@@ -1,24 +1,4 @@
 let currentStep = 0;
-let isMember = false;
-
-function checkLogin() {
-    const memberId = document.getElementById('memberId').value;
-    const password = document.getElementById('password').value;
-
-    // Simulierte Überprüfung der Anmeldedaten
-    if (memberId === "12345" && password === "passwort") {
-        isMember = true;
-        alert("Login erfolgreich!");
-        nextStep();
-    } else {
-        alert("Falsche Mitgliedsnummer oder Passwort.");
-    }
-}
-
-function skipLogin() {
-    isMember = false;
-    nextStep();
-}
 
 function nextStep() {
     document.getElementById(`step${currentStep}`).classList.remove('active');
@@ -35,15 +15,18 @@ function nextStep() {
     }
 
     if (currentStep === 4) {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
         const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(el => el.value);
         const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
         const name = document.querySelector('input[name="name"]').value;
         const address = document.querySelector('input[name="address"]').value;
 
-        let summaryText = `Ausgewählte Dokumente: ${selectedDocuments.join(', ')}<br>`;
+        let summaryText = `Name: ${firstName} ${lastName}<br>`;
+        summaryText += `Ausgewählte Dokumente: ${selectedDocuments.join(', ')}<br>`;
         summaryText += `Bereitstellungsart: ${deliveryMethod}<br>`;
         if (deliveryMethod === 'Post') {
-            summaryText += `Name: ${name}<br>Adresse: ${address}`;
+            summaryText += `Lieferadresse: ${name}, ${address}`;
         }
 
         document.getElementById('summary').innerHTML = summaryText;
