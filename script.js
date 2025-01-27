@@ -15,18 +15,23 @@ let currentStep = 1;
 function nextStep() {
     // Überprüfung, ob der Benutzer im ersten Schritt mindestens ein Dokument ausgewählt hat
     if (currentStep === 1) {
-        const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked'));
+        const selectedDocuments = document.querySelectorAll('input[name="document"]:checked');
         if (selectedDocuments.length === 0) {
             alert('Bitte wählen Sie mindestens ein Dokument aus.');
             return; // Beendet die Funktion, wenn kein Dokument ausgewählt ist
         }
     }
 
+    // Nur fortfahren, wenn der aktuelle Schritt kleiner als 4 ist
     if (currentStep < 4) {
+        // Aktuellen Schritt ausblenden
         document.getElementById(`step${currentStep}`).classList.remove('active');
+        // Zum nächsten Schritt wechseln
         currentStep++;
+        // Nächsten Schritt anzeigen
         document.getElementById(`step${currentStep}`).classList.add('active');
 
+        // Adressfelder anzeigen, wenn "Postversand" ausgewählt ist
         if (currentStep === 3) {
             const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
             if (deliveryMethod === 'Post') {
@@ -36,6 +41,7 @@ function nextStep() {
             }
         }
 
+        // Zusammenfassung im letzten Schritt anzeigen
         if (currentStep === 4) {
             const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(el => el.value);
             const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
@@ -54,9 +60,13 @@ function nextStep() {
 }
 
 function prevStep() {
+    // Nur zurückgehen, wenn der aktuelle Schritt größer als 1 ist
     if (currentStep > 1) {
+        // Aktuellen Schritt ausblenden
         document.getElementById(`step${currentStep}`).classList.remove('active');
+        // Zum vorherigen Schritt wechseln
         currentStep--;
+        // Vorherigen Schritt anzeigen
         document.getElementById(`step${currentStep}`).classList.add('active');
     }
 }
