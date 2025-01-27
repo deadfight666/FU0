@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Login-Container -->
     <div id="loginContainer" class="form-container">
         <h2>Login</h2>
         <form id="loginForm">
@@ -16,8 +17,10 @@
         </form>
     </div>
 
+    <!-- Bestellformular-Container (zunächst ausgeblendet) -->
     <div id="orderContainer" class="form-container" style="display:none;">
         <form id="orderForm">
+            <!-- Schritt 1: Dokumente auswählen -->
             <div id="step1" class="form-step active">
                 <h2>Schritt 1: Dokumente auswählen</h2>
                 <label><input type="checkbox" name="document" value="Broschüre"> Broschüre</label>
@@ -26,6 +29,8 @@
                 <label><input type="checkbox" name="document" value="Merkblatt"> Merkblatt</label>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Schritt 2: Bereitstellungsart wählen -->
             <div id="step2" class="form-step">
                 <h2>Schritt 2: Bereitstellungsart wählen</h2>
                 <label><input type="radio" name="delivery" value="Download" checked> Download</label>
@@ -33,6 +38,8 @@
                 <button type="button" onclick="prevStep()">Zurück</button>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Schritt 3: Adresse eingeben -->
             <div id="step3" class="form-step">
                 <h2>Schritt 3: Adresse eingeben</h2>
                 <div id="addressFields" style="display:none;">
@@ -42,19 +49,26 @@
                 <button type="button" onclick="prevStep()">Zurück</button>
                 <button type="button" onclick="nextStep()">Weiter</button>
             </div>
+
+            <!-- Schritt 4: Zusammenfassung -->
             <div id="step4" class="form-step">
                 <h2>Schritt 4: Zusammenfassung</h2>
                 <p id="summary"></p>
-                <p>Ihre Daten werden nur zur Bearbeitung Ihrer Bestellung verwendet und nicht an Dritte weitergegeben. Die Daten werden nach 30 Tagen automatisch gelöscht.</p>
+                <p>
+                    Ihre Daten werden nur zur Bearbeitung Ihrer Bestellung verwendet und nicht an Dritte weitergegeben. 
+                    Die Daten werden nach 30 Tagen automatisch gelöscht.
+                </p>
                 <label>
                     <input type="checkbox" id="privacyConsent" required>
-                    Ich stimme der <a href="#" target="_blank">Datenschutzerklärung</a> zu.
+                    Ich stimme der <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
                 </label>
                 <button type="button" onclick="prevStep()">Zurück</button>
                 <button type="submit">Bestellung abschließen</button>
             </div>
         </form>
     </div>
+
+    <!-- JavaScript einbinden -->
     <script src="script.js"></script>
 </body>
 </html>
