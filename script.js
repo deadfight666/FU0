@@ -1,9 +1,9 @@
 let currentStep = 1;
 
 function nextStep() {
-    document.getElementById(`step${currentStep}`).style.display = 'none';
+    document.getElementById(`step${currentStep}`).classList.remove('active');
     currentStep++;
-    document.getElementById(`step${currentStep}`).style.display = 'block';
+    document.getElementById(`step${currentStep}`).classList.add('active');
 
     if (currentStep === 3) {
         const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
@@ -31,9 +31,9 @@ function nextStep() {
 }
 
 function prevStep() {
-    document.getElementById(`step${currentStep}`).style.display = 'none';
+    document.getElementById(`step${currentStep}`).classList.remove('active');
     currentStep--;
-    document.getElementById(`step${currentStep}`).style.display = 'block';
+    document.getElementById(`step${currentStep}`).classList.add('active');
 }
 
 document.getElementById('orderForm').addEventListener('submit', function(event) {
@@ -43,11 +43,6 @@ document.getElementById('orderForm').addEventListener('submit', function(event) 
         return;
     }
 
-    const selectedDocuments = Array.from(document.querySelectorAll('input[name="document"]:checked')).map(el => el.value);
-    const deliveryMethod = document.querySelector('input[name="delivery"]:checked').value;
-    const name = document.querySelector('input[name="name"]').value;
-    const address = document.querySelector('input[name="address"]').value;
-
-    // Hier könnte die Bestellung an den Server gesendet werden
     alert('Bestellung erfolgreich abgeschlossen!');
+    // Hier könnte die Bestellung an den Server gesendet werden
 });
